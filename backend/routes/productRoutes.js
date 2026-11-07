@@ -19,9 +19,17 @@ function validateProduct(body) {
 
 router.get("/", async (req, res) => {
   try {
-    const products = await Product.find({ quantity: { $gt: 0 } }).populate("farmer", "name address").sort({ createdAt: -1 });
+    const products = await Product.find({ quantity: { $gt: 0 } })
+      .populate("farmer", "name address phone")
+      .sort({ createdAt: -1 });
+
     res.json(products);
-  } catch (error) { res.status(500).json({ message: "Could not load products.", detail: error.message }); }
+  } catch (error) {
+    res.status(500).json({
+      message: "Could not load products.",
+      detail: error.message
+    });
+  }
 });
 
 router.get("/my-products", protect, allowRoles("farmer"), async (req, res) => {
