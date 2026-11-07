@@ -7,7 +7,12 @@ const productRoutes = require("./routes/productRoutes");
 const orderRoutes = require("./routes/orderRoutes");
 
 const app = express();
-app.use(cors({ origin: process.env.CLIENT_ORIGIN || "http://localhost:5173" }));
+app.use(cors({
+  origin: [
+    "https://farmconnect-flax-ten.vercel.app",
+    "http://localhost:5173"
+  ]
+}));
 app.use(express.json({ limit: "1mb" }));
 app.use(express.urlencoded({ extended: true }));
 
