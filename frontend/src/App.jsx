@@ -34,8 +34,7 @@ import {
 
 import "./App.css";
 
-
-const API = "http://localhost:5000/api";
+const API = "https://farmconnect-hgon.onrender.com/api";
 const CATEGORIES = [
   { name: "Vegetables", icon: "🥦" }, { name: "Fruits", icon: "🍎" },
   { name: "Grains", icon: "🌾" }, { name: "Dairy", icon: "🥛" },
