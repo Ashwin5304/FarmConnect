@@ -5,6 +5,7 @@ import {
   ShoppingCart,
   Search,
   UserRound,
+    Phone,
   Leaf,
   Truck,
   ShieldCheck,
@@ -155,7 +156,19 @@ function Home() {
       {loading ? <div className="product-status">Loading fresh products...</div> : error ? <div className="product-status product-error">{error} <button onClick={loadProducts}>Try again</button></div> : filteredProducts.length === 0 ? <div className="marketplace-empty"><Leaf size={42}/><h3>No products found</h3><p>Try another search or category. New farmer listings will appear here.</p><button onClick={() => {setSearch("");setCategory("All");}}>Show all products</button></div> :
         <div className="product-grid">{filteredProducts.map(product => <article className="product-card" key={product._id}>
           <div className="product-image"><ProductImage product={product}/><span className="fresh-tag">Fresh</span></div>
-          <div className="product-info"><div className="rating"><Leaf size={14}/> {product.category}</div><h3>{product.name}</h3><p className="farmer-name"><Sprout size={15}/>{product.farmer?.name || "Local Farmer"}</p><p className="market-product-description">{product.description}</p><p className="product-stock">Available: {product.quantity} {product.unit}</p>
+          <div className="product-info"><div className="rating"><Leaf size={14}/> {product.category}</div><h3>{product.name}</h3><p className="farmer-name">
+              <Sprout size={15}/>
+              {product.farmer?.name || "Local Farmer"}
+            </p>
+            {product.farmer?.phone && (
+              <a
+                href={`tel:${product.farmer.phone}`}
+                className="contact-farmer-button"
+              >
+                <Phone size={16} />
+                Contact Farmer
+              </a>
+            )}<p className="market-product-description">{product.description}</p><p className="product-stock">Available: {product.quantity} {product.unit}</p>
             <div className="product-bottom"><div className="price">{money(product.price)}<span> / {product.unit}</span></div><button className="add-button" disabled={!user || user.role !== "customer"} onClick={() => addToCart(product)}>{!user ? "Login to buy" : user.role !== "customer" ? "Customer only" : "+ Add"}</button></div>
           </div></article>)}</div>}
     </section>

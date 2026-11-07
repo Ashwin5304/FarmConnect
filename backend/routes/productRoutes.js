@@ -34,7 +34,9 @@ router.post("/", protect, allowRoles("farmer"), async (req, res) => {
     const validation = validateProduct(req.body);
     if (validation) return res.status(400).json({ message: validation });
     const { name, category, description, price, quantity, unit, imageUrl = "" } = req.body;
-    const product = await Product.create({ name, category, description, price: Number(price), quantity: Number(quantity), unit, imageUrl, farmer: req.user.id });
+    const products = await Product.find({ quantity: { $gt: 0 } })
+  .populate("farmer", "name address phone")
+  .sort({ createdAt: -1 });
     res.status(201).json({ message: "Product added successfully.", product });
   } catch (error) { res.status(500).json({ message: "Could not add product.", detail: error.message }); }
 });

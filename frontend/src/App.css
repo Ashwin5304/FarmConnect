@@ -395,3 +395,25 @@ button { transition: color .2s ease, background .2s ease, border-color .2s ease,
   .hero-stats { gap: 13px; }
   .hero-stats h3 { font-size: 17px; }
 }
+
+.contact-farmer-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+  padding: 9px 14px;
+  border: 1px solid #3f704e;
+  border-radius: 8px;
+  color: #3f704e;
+  background: #edf5ed;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+.contact-farmer-button:hover {
+  background: #3f704e;
+  color: white;
+}
