@@ -45,10 +45,7 @@ function getImageUrl(src) {
   if (!src) return "";
   return src.startsWith("http") ? src : `${API_BASE}${src}`;
 }
-function getImageUrl(src) {
-  if (!src) return "";
-  return src.startsWith("http") ? src : `${API_BASE}${src}`;
-}
+
 const CATEGORIES = [
   { name: "Vegetables", icon: "🥦" }, { name: "Fruits", icon: "🍎" },
   { name: "Grains", icon: "🌾" }, { name: "Dairy", icon: "🥛" },
