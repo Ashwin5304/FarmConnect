@@ -14,7 +14,7 @@ router.post("/", protect, allowRoles("customer"), async (req, res) => {
     if (!Array.isArray(items) || items.length === 0) return res.status(400).json({ message: "Your cart is empty." });
     if (!phone || !/^\+?[0-9\s-]{10,15}$/.test(String(phone))) return res.status(400).json({ message: "Enter a valid contact number." });
     if (!address || String(address).trim().length < 8) return res.status(400).json({ message: "Enter a complete delivery address." });
-    if (items.length > 30) return res.status(400).json({ message: "You can order up to 30 different products at once." });
+    if (items.length > 30) return res.status(400).json( { message: "You can order up to 30 different products at once." });
 
     const quantities = new Map();
     for (const item of items) {
