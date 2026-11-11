@@ -35,9 +35,16 @@ import {
 
 import "./App.css";
 
-const API = "http://localhost:5000/api";
+const API = window.location.hostname === "localhost"
+  ? "http://localhost:5000/api"
+  : "https://farmconnect-hgon.onrender.com/api";
+
 const API_BASE = API.replace(/\/api$/, "");
 
+function getImageUrl(src) {
+  if (!src) return "";
+  return src.startsWith("http") ? src : `${API_BASE}${src}`;
+}
 function getImageUrl(src) {
   if (!src) return "";
   return src.startsWith("http") ? src : `${API_BASE}${src}`;
